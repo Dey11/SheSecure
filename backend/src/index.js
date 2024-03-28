@@ -21,7 +21,7 @@ app.use(express.json());
 connectToMongoDB(mongo_uri);
 
 // app.get("/api/auth", auth);
-app.get("/api/accidents", accident);
+app.use("/api/accidents", accident);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
