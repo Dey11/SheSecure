@@ -49,6 +49,15 @@ const accidentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    status: {
+      type: String,
+      default: "unassigned",
+      enum: ["unassigned", "assigned"],
+    },
+    assignedTo: {
+      type: String,
+      default: null, // stores name_pin of admin if assigned
+    },
   },
   { timestamps: true }
 );
