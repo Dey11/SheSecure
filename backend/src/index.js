@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import auth from "./routes/auth";
+import accident from "./routes/accidents";
 import connectDB from "./db/index";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 connectDB(mongo_uri);
 
 app.get("/api/auth", auth);
+app.get("/api/accidents", accident);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

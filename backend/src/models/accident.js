@@ -20,10 +20,6 @@ const accidentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    street: {
-      type: String,
-      required: true,
-    },
     pincode: {
       type: String,
       required: true,
@@ -47,7 +43,7 @@ const accidentSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     status: {
       type: String,
