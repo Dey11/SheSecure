@@ -4,9 +4,9 @@ import {
   getAccidentByPin,
   addAccident,
   updateAccident,
-} from "../controllers/accidents";
+} from "../controllers/accidents.js";
 
-const accident = express.Router();
+export const accident = express.Router();
 
 accident.post("/", (req, res) => {
   addAccident(req, res);
@@ -23,8 +23,6 @@ accident.get("/:pincode", (req, res) => {
 accident.put("/:id", (req, res) => {
   updateAccident(req, res);
 });
-
-export default accident;
 
 // yet to think of putting the accidents that
 // dont have a registered police station for

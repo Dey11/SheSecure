@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
-import auth from "./routes/auth";
-import accident from "./routes/accidents";
-import connectDB from "./db/index";
+import dotenv from "dotenv";
+// import auth from "./routes/auth.js";
+import { accident } from "./routes/accident.js";
+import { connectToMongoDB } from "./db/index.js";
 
 const app = express();
-require("dotenv").config();
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 const mongo_uri = process.env.MONGO_URI;
 
@@ -17,15 +18,15 @@ app.use(
 );
 app.use(express.json());
 
-connectDB(mongo_uri);
+connectToMongoDB(mongo_uri);
 
-app.get("/api/auth", auth);
+// app.get("/api/auth", auth);
 app.get("/api/accidents", accident);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
