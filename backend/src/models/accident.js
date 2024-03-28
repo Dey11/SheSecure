@@ -24,7 +24,7 @@ const accidentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    zip: {
+    pincode: {
       type: String,
       required: true,
     },
@@ -64,4 +64,4 @@ const accidentSchema = new mongoose.Schema(
 
 const Accident = mongoose.model("Accident", accidentSchema);
 
-module.exports = Accident;
+export default Accident;
