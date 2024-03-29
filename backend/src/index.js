@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 // import auth from "./routes/auth.js";
 import { accident } from "./routes/accident.js";
 import { connectToMongoDB } from "./db/index.js";
+import {admin} from "./routes/auth.js"
 
 const app = express();
 dotenv.config();
@@ -22,6 +23,7 @@ connectToMongoDB(mongo_uri);
 
 // app.get("/api/auth", auth);
 app.use("/api/accidents", accident);
+app.use("/api/admin", admin);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
