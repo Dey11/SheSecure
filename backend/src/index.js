@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 // import auth from "./routes/auth.js";
 import { accident } from "./routes/accident.js";
 import { connectToMongoDB } from "./db/index.js";
-import {admin} from "./routes/auth.js"
+import { admin } from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
