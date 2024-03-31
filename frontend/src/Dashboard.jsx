@@ -20,9 +20,9 @@ const Dashboard = () => {
     const mySocket = socket || io("http://localhost:3000");
     console.log("Socket connected");
     mySocket.on("newAccident", (data) => {
-      console.log("Accident received:", data);
+      console.log("Accident received:", data, "received");
       data.index = accidents.length + 1;
-      setAccidents([...accidents, data]);
+      setAccidents((prevAccidents) => [...prevAccidents, data]);
     });
 
     return () => mySocket.disconnect();
