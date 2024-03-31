@@ -12,10 +12,7 @@ const PORT = process.env.PORT || 3000;
 const mongo_uri = process.env.MONGO_URI;
 
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
+  cors()
 );
 app.use(express.json());
 

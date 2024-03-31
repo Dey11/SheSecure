@@ -1,12 +1,17 @@
 import React from 'react'
 import image from "./assets/fabdf33d7dc278197fd3f5086feb84f1.jpeg"
 import Card from './Card'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import RecentCard from './RecentCard'
+import { Link } from 'react-router-dom'
+import { UserContext } from './context/userContext'
 
 const Dashboard = () => {
 
   const [toggle, switchToggle] = useState(0);
+  const {currentUser} = useContext(UserContext)
+  // console.log(currentUser && currentUser?.token)
+
  
 
   return (
@@ -16,15 +21,19 @@ const Dashboard = () => {
         <h1 className="text-[2rem] font-bold">Welcome to <span className="text-[#EF7A7A]">SheSecure</span></h1>
 
       </div>
-      <div className="flex justify-between gap-6 ">
+    {currentUser?.token == null ? <Link to='/login'>Login</Link> :<> <div className="flex justify-between gap-6 ">
         <button className="text-white bg-[#EF7A7A] px-4 py-2 rounded-lg  hover:bg-[#D07070]">
           Add Details
         </button>
         <div className=''>
-          <img src={image} alt="" srcset="" className="rounded-full object-cover h-14 w-16 "/>
+          <img src={image} alt="" srcSet="" className="rounded-full object-cover h-14 w-16 "/>
         </div>
         
+        
+        
       </div>
+      
+      </>}
 
       
     </div>

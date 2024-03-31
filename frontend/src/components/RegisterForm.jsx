@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -10,8 +10,9 @@ const RegisterForm = () => {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [pincode, setPincode] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -25,9 +26,12 @@ const RegisterForm = () => {
           pincode,
         }
       );
-      // console.log(response);
+       if(!response.data.data){
+        console.log("Erroorr aagyi.")
+       }
+       navigate('/login')
     } catch (error) {
-      // console.log(error);
+       console.log(error);
     }
   };
 
@@ -133,7 +137,7 @@ const RegisterForm = () => {
             </button>
           </form>
           <p className="text-center font-semibold">
-            Already have an account? <span className="text-white">Login</span>
+            Already have an account? <span className="text-white"><Link to="/login">Login</Link></span>
           </p>
         </div>
       </div>
