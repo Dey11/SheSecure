@@ -56,10 +56,11 @@ export const addAccident = async (req, res) => {
       severity,
     };
 
-    // const receiverSocketId = getReceiverSocketId(pincode);
-    // if (receiverSocketId) {
-    //   io.to(receiverSocketId).emit("newAccident", newAccident);
-    // }
+    const receiverSocketId = getReceiverSocketId(pincode);
+    if (receiverSocketId) {
+      // console.log("Sending new accident to receiver", receiverSocketId);
+      io.to(receiverSocketId).emit("newAccident", newAccident);
+    }
 
     await Accident.create(newAccident);
     return res.status(200).json({ message: "Accident has been registered" });

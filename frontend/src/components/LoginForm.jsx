@@ -1,38 +1,32 @@
 import React from "react";
-import { Link ,useNavigate} from "react-router-dom";
-import { useState, useEffect,useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import {UserContext} from "../context/userContext"
+import { UserContext } from "../context/userContext";
 
 const LoginForm = () => {
- const {setCurrentUser} = useContext(UserContext)
+  const { setCurrentUser } = useContext(UserContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate= useNavigate()
-  
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log("jhihii")
+      console.log("jhihii");
       const response = await axios.post(
         "http://localhost:3000/api/admin/login",
         {
-        
           email,
           password,
-          
         }
       );
-     const loginUser = await response.data.data;
-     setCurrentUser(loginUser)
-     navigate('/')
-     
-     
-
+      const loginUser = await response.data.data;
+      setCurrentUser(loginUser);
+      navigate("/");
     } catch (error) {
-     console.log(error.response.data.message);
+      console.log(error.response.data.message);
     }
   };
 
@@ -44,7 +38,6 @@ const LoginForm = () => {
         </div>
         <div className="pb-10">
           <form className="flex flex-col gap-2 text-xl font-semibold pb-2">
-            
             <label htmlFor="email" className="pl-1">
               Email ID
             </label>
@@ -73,7 +66,7 @@ const LoginForm = () => {
               }}
               value={password}
             />
-   
+
             <button
               type="submit"
               className="bg-gradient-to-r from-[#EF4747] to-[#EF6A6A] py-2 mt-5 rounded-xl
@@ -84,7 +77,10 @@ const LoginForm = () => {
             </button>
           </form>
           <p className="text-center font-semibold">
-            Don't have an account? <span className="text-white"><Link to="/register">Register</Link></span>
+            Don't have an account?{" "}
+            <span className="text-white">
+              <Link to="/register">Register</Link>
+            </span>
           </p>
         </div>
       </div>

@@ -88,6 +88,7 @@ export const loginAdmin = async (req, res, next) => {
         id: existingAdmin._id,
         name: existingAdmin.name,
         email: existingAdmin.email,
+        pincode: existingAdmin.pincode,
       },
     });
   } catch (error) {

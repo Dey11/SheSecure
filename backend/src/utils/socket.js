@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
 
   const pincode = socket.handshake.query.pincode;
   if (pincode != "undefined") userSocketMap[pincode] = socket.id;
-
+  console.log("User socket map", userSocketMap);
   socket.on("disconnect", () => {
     console.log("Admin has disconnected", socket.id);
     delete userSocketMap[pincode];
