@@ -98,9 +98,9 @@ const Dashboard = () => {
                 </thead>
 
                 <tbody className="bg-white">
-                  {/* {accidents.map((accident) => console.log(accident))} */}
-                  <RecentCard />
-                  <RecentCard />
+                  {accidents.map((accident) => (
+                    <RecentCard key={accident.index} {...accident} />
+                  ))}
                 </tbody>
               </table>
             </>
