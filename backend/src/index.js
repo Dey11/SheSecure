@@ -5,8 +5,8 @@ import dotenv from "dotenv";
 import { accident } from "./routes/accident.js";
 import { connectToMongoDB } from "./db/index.js";
 import { admin } from "./routes/auth.js";
+import { app, io, server } from "./utils/socket.js";
 
-const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const mongo_uri = process.env.MONGO_URI;
@@ -29,6 +29,6 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });

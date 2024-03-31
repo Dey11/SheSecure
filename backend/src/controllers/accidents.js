@@ -1,4 +1,6 @@
 import Accident from "../models/accident.js";
+import { io } from "../utils/socket.js";
+import { getReceiverSocketId } from "../utils/socket.js";
 
 export const getAllAccidents = async (req, res) => {
   try {
@@ -53,6 +55,11 @@ export const addAccident = async (req, res) => {
       description,
       severity,
     };
+
+    const receiverSocketId = getReceiverSocketId(pincode);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newAccident", newAccident);
+    }
 
     await Accident.create(newAccident);
     return res.status(200).json({ message: "Accident has been registered" });
